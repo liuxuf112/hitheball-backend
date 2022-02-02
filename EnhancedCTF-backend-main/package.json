@@ -1,0 +1,27 @@
+{
+  "name": "EnhancedCTF-backend",
+  "version": "1.0.0",
+  "description": "GitHub for the backend side of the Enhanced Capture the Flag Capstone project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moyke/EnhancedCTF-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moyke/EnhancedCTF-backend/issues"
+  },
+  "homepage": "https://github.com/moyke/EnhancedCTF-backend#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1"
+  }
+}
