@@ -74,35 +74,16 @@ async function sendMyPlayerInfo(httpRequest, httpResponse, gameId, deviceId) {
     }
 
     //setting more info about the player
-    var cookieRes = await getActiveCookiesOnPlayer(httpRequest, httpResponse, player.player_id);
-    if (cookieRes == errors.ASYNC_FAILURE) {
-        return errors.ASYNC_FAILURE;
-    }
+    
     var viewMul = 1.0;
     var tagMul = 1.0;
     var invisible = false;
 
     //setting cookie buffs for sending your info
-    for (const cookie of cookieRes) {
-        switch (cookie.type) {
-            case cookieTypesEnum.VIEW_RADIUS_COOKIE_TYPE:
-                viewMul *= VIEW_RADIUS_COOKIE_MUL;
-                break;
-            case cookieTypesEnum.TAG_RADIUS_COOKIE_TYPE:
-                tagMul *= TAG_RADIUS_COOKIE_MUL;
-                break;
-            case cookieTypesEnum.INVISIBLE_COOKIE_TYPE:
-                invisible = true;
-                break;
-            default:
-                console.error(`unknown cookie, type: ${cookie.cookieType}`)
-                break;
-        }
-    }
 
 
 
-    sendBody.activeCookies = cookieRes;
+
     sendBody.tagRadius = player.tag_radius * tagMul;
     sendBody.viewRadius = player.view_radius * viewMul;
     sendBody.invisible = invisible;
@@ -110,22 +91,6 @@ async function sendMyPlayerInfo(httpRequest, httpResponse, gameId, deviceId) {
     sendBody.hasFlag = player.flag_id ? true : false; //says whether player has a flag or not.
 
     //next set the class info
-    sendBody.classString = classNames[player.class];
-    sendBody.classId = player.class;
-
-
-    if (classNames[player.class] === "Queen") {
-
-        try {
-            var res = await queries.getQueenFlagNumber(player.player_id);
-            sendBody.queenFlagNumber = res.rows[0].flag_number;
-        } catch (err) {
-            errors.handleServerError("getQueenFlagNumber", httpResponse, err);
-            return;
-        }
-    } else {
-        sendBody.queenFlagNumber = -1;
-    }
 
 
     sendBody.gameId = gameId;
@@ -133,37 +98,7 @@ async function sendMyPlayerInfo(httpRequest, httpResponse, gameId, deviceId) {
 }
 
 
-async function getActiveCookiesOnPlayer(httpRequest, httpResponse, playerId) {
 
-    var cookies;
-
-    try {
-        var res = await queries.getAllCookiesOnPlayer(playerId);
-        cookies = res.rows;
-    } catch (err) {
-        errors.handleServerError("getAllCookiesOnPlayer", httpResponse, err);
-    }
-
-    var activeCookiesSendBody = [];
-    for (const cookie of cookies) {
-
-        var secondsDifference = TimeHelper.howLongAgoWas(cookie.activation_time_stamp);
-
-        if (secondsDifference < cookie.activation_length) { //if the amount of seconds expired is less.
-            var secondsLeft = cookie.activation_length - secondsDifference;
-        } else {
-            continue;
-        }
-        var cookieSend = {};
-        cookieSend.secondsLeft = Math.floor(secondsLeft);
-        cookieSend.type = cookie.cookie_type;
-        cookieSendcookieNumber = cookie.cookie_number;
-        activeCookiesSendBody.push(cookieSend);
-    }
-    return activeCookiesSendBody;
-
-
-}
 
 module.exports = {
     getMyPlayerInfo
