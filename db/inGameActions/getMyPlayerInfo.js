@@ -74,19 +74,13 @@ async function sendMyPlayerInfo(httpRequest, httpResponse, gameId, deviceId) {
     }
 
     //setting more info about the player
-    
-    var viewMul = 1.0;
-    var tagMul = 1.0;
-    var invisible = false;
 
     //setting cookie buffs for sending your info
 
 
-
-
-    sendBody.tagRadius = player.tag_radius * tagMul;
-    sendBody.viewRadius = player.view_radius * viewMul;
-    sendBody.invisible = invisible;
+    sendBody.tagRadius = player.tag_radius ;
+    sendBody.viewRadius = player.view_radius ;
+    
     sendBody.eliminated = player.is_eliminated;
     sendBody.hasFlag = player.flag_id ? true : false; //says whether player has a flag or not.
 
