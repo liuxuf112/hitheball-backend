@@ -110,7 +110,7 @@ CREATE TABLE coins(
     create_date DATE NOT NULL,
     FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE CASCADE,
     FOREIGN KEY (player_id) REFERENCES players(player_id)
-)
+);
 
 CREATE TABLE cookies(
     cookie_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -125,7 +125,7 @@ CREATE TABLE cookies(
     FOREIGN KEY (game_id) REFERENCES games(game_id) ON DELETE CASCADE,
     FOREIGN KEY (player_id) REFERENCES players(player_id)
 
-)
+);
 
 CREATE TABLE cookie_amounts(
     cookie_amounts_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

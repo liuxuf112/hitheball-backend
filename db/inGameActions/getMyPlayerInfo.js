@@ -141,7 +141,7 @@ async function getActiveCookiesOnPlayer(httpRequest, httpResponse, playerId) {
         var res = await queries.getAllCookiesOnPlayer(playerId);
         cookies = res.rows;
     } catch (err) {
-        errors.handleServerError("getAllCookiesOnPlayer", httpRespons, err);
+        errors.handleServerError("getAllCookiesOnPlayer", httpResponse, err);
     }
 
     var activeCookiesSendBody = [];
