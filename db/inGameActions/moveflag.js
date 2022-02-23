@@ -13,7 +13,7 @@ const moveflag = (httpRequest,httpResponse)=>{
 
 //this function is called after we confirm the person attempting to steal the flag is in the right game.
 async function trytomoveflag(httpRequest,httpResponse,gameId,deviceId){
-    var flagNumber = httpRequest.query.flagNumber;
+    var flagNumber = 1;
     if(!flagNumber){
         console.error("attempt flag steal called without flag number");
         httpResponse.status(400).send("bad request");
