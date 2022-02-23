@@ -649,9 +649,9 @@ function createRegionsSendBody(gameRegion,teamOneRegion,teamTwoRegion){
 
 //gets all info required for the map screen rendering EXCEPT FOR THE REGIONS
 //the reason the regions aren't sent is because the regions should only be sent once. 
-//const getMapScreenInfo = (httpRequest,httpResponse)=>{
-//    checkIfDeviceMatchesGameID(httpRequest,httpResponse,sendMapScreenInfo,"getMapScreenInfo");
-//}
+const getMapScreenInfo = (httpRequest,httpResponse)=>{
+    checkIfDeviceMatchesGameID(httpRequest,httpResponse,sendMapScreenInfo,"getMapScreenInfo");
+}
 
 //sends all info for map screen.
 //sends your team's locations
@@ -752,15 +752,7 @@ async function sendMapScreenInfo(httpRequest,httpResponse,gameId,deviceId){
         return;
     }
              
-    var cookies;
-    try{
-        var res = await queries.getAllCookiesInGame(gameId);
-        cookies = res.rows;
-    }catch(err){
-        errors.handleServerError("getAllCookiesInGame",httpResponse,err);
-        return;
-    }
-    var cookiesBody = createCookiesSendBody(cookies);
+
 
 
     var enemyFlagsBody = await createEnemyFlagsSendBody(playerLocation,viewRadius,enemyFlags,flagStolenLocations,classString,player.player_id);
@@ -772,7 +764,6 @@ async function sendMapScreenInfo(httpRequest,httpResponse,gameId,deviceId){
     sendBody.enemys=enemyLocationsSendBody;
     sendBody.enemyFlags = enemyFlagsBody;
   
-    sendBody.cookies = cookiesBody;
     httpResponse.status(200).send(JSON.stringify(sendBody));
          
 }
@@ -831,7 +822,7 @@ module.exports={
     getMyTeamsFlags,
     getEnemiesInViewRadius,
     getGameRegions,
-    //getMapScreenInfo,
+    getMapScreenInfo,
     getEnemyFlags,
     getGameStarted,
     checkIfDeviceMatchesGameID

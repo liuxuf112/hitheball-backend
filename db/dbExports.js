@@ -29,7 +29,7 @@ module.exports = {
     getMyTeamsFlags: gameInfo.getMyTeamsFlags,
     getGameRegions: gameInfo.getGameRegions,
     getClockInfo: gameInfo.getClockInfo,
-    //getMapScreenInfo: gameInfo.getMapScreenInfo,
+    getMapScreenInfo: gameInfo.getMapScreenInfo,
     getEnemyFlags: gameInfo.getEnemyFlags,
     getGameStarted: gameInfo.getGameStarted,
     setGameInfo: updateGameInfo.setGameInfo,

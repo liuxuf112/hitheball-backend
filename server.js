@@ -64,7 +64,7 @@ app.get('/getEnemiesInViewRadius',db.getEnemiesInViewRadius);
 app.get('/getMyTeamsFlags',db.getMyTeamsFlags)
 app.get('/getGameRegions',db.getGameRegions)
 app.get('/getClockInfo',db.getClockInfo);
-//app.get('/getMapScreenInfo',db.getMapScreenInfo)
+app.get('/getMapScreenInfo',db.getMapScreenInfo)
 app.get('/getEnemyFlags',db.getEnemyFlags)
 app.get('/getGameStarted',db.getGameStarted);
 app.get('/getMyInfo',db.getMyInfo);
