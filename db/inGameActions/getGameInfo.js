@@ -649,9 +649,9 @@ function createRegionsSendBody(gameRegion,teamOneRegion,teamTwoRegion){
 
 //gets all info required for the map screen rendering EXCEPT FOR THE REGIONS
 //the reason the regions aren't sent is because the regions should only be sent once. 
-const getMapScreenInfo = (httpRequest,httpResponse)=>{
-    checkIfDeviceMatchesGameID(httpRequest,httpResponse,sendMapScreenInfo,"getMapScreenInfo");
-}
+//const getMapScreenInfo = (httpRequest,httpResponse)=>{
+//    checkIfDeviceMatchesGameID(httpRequest,httpResponse,sendMapScreenInfo,"getMapScreenInfo");
+//}
 
 //sends all info for map screen.
 //sends your team's locations
@@ -831,7 +831,7 @@ module.exports={
     getMyTeamsFlags,
     getEnemiesInViewRadius,
     getGameRegions,
-    getMapScreenInfo,
+    //getMapScreenInfo,
     getEnemyFlags,
     getGameStarted,
     checkIfDeviceMatchesGameID
