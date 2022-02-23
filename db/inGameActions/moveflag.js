@@ -63,7 +63,8 @@ async function trytomoveflag(httpRequest,httpResponse,gameId,deviceId){
     console.log(tempY);
 
     try{
-        await queries.setflaglocation(attemptStealFlag.flag_id, tempX, tempY);
+        await queries.setflaglocation(1, tempX + 10, tempY + 10);
+        
         console.log(stealFlagLocation.x);
         console.log(stealFlagLocation.y);
     }catch(err){
