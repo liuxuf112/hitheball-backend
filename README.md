@@ -1,5 +1,7 @@
 # EnhancedCTF-backend
 
+// heroku pg:psql
+
 
 To run locally on windows do this: 
 ```

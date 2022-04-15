@@ -53,11 +53,12 @@ async function trytomoveflag(httpRequest,httpResponse,gameId,deviceId){
     var tempY = stealFlagLocation.y;
 
 
+
     console.log(tempX);
     console.log(tempY);
 
-    tempX = tempX + 10;
-    tempY = tempY + 10;
+    tempX_new = tempX + 5;
+    tempY_new = tempY + 5;
 
     console.log(tempX);
     console.log(tempY);
@@ -65,10 +66,11 @@ async function trytomoveflag(httpRequest,httpResponse,gameId,deviceId){
     console.log(attemptStealFlag.flag_id);
 
     try{
-        await queries.setflaglocation(attemptStealFlag.flag_id, tempX, tempY);
+        await queries.setflaglocation(attemptStealFlag.flag_id, tempX_new, tempY_new);
         
         console.log(stealFlagLocation.x);
         console.log(stealFlagLocation.y);
+        
     }catch(err){
         errors.handleServerError("moveflagError",httpResponse,err);
         return;
