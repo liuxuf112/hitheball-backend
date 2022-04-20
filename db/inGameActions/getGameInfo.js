@@ -287,6 +287,8 @@ async function generateFlagSendBody(httpRequest,httpResponse,flagHomeLocations,f
     //update flag at here 
     //remove un-use function
 
+
+    /*
     var flagNumber = 1;
     try{
         var res = await queries.getPlayerInfoFromDeviceId(deviceId);
@@ -326,6 +328,52 @@ async function generateFlagSendBody(httpRequest,httpResponse,flagHomeLocations,f
     }
    
     return flagSendBody;
+
+    */
+
+    for(var i = 0; i < flagStolenLocations.length; i++){
+
+        for(var j = 0; j < flagHomeLocations.length; j++){
+            if(flagHomeLocations[j].flag_id == flagStolenLocations[i].flag_id){
+                flagHomeLocations[j].flag_location = flagStolenLocations[i].player_location;
+                flagHomeLocations[j].flagStolen = true;
+                if(await isPlayerInvisible(httpRequest,httpResponse,flagStolenLocations[i].player_id)){
+                    flagHomeLocations[j].invisible=true;
+                }
+                break; //if we find the flag in the home locations, no reason to do the other ones.
+            }
+
+        }
+    }
+    var flagSendBody = [];
+    for(var i = 0; i < flagHomeLocations.length; i++){
+        var flagInfo = {};
+        if(flagHomeLocations[i].flagStolen){
+            flagInfo.stolen=true;
+        }else{
+            flagInfo.stolen=false;
+        }
+        if(flagHomeLocations[i].invisible){
+            flagInfo.invisible = true;
+            flagInfo.latitude = null;
+            flagInfo.longitude = null;
+        }else{
+            flagInfo.invisible = false;
+            flagInfo.latitude = flagHomeLocations[i].flag_location.x;
+            flagInfo.longitude = flagHomeLocations[i].flag_location.y;
+        }
+        flagInfo.flagNumber = flagHomeLocations[i].flag_number;
+        console.log("this is game.flagInfo!!!", game.flagInfo);
+        flagSendBody.push(flagInfo);
+    }
+
+
+
+
+
+
+
+
 
 }
 
