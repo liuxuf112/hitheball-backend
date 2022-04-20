@@ -144,3 +144,7 @@ CREATE TABLE queries(
     unique_name VARCHAR(265) UNIQUE NOT NULL,
     request_method VARCHAR(10)
 );
+
+CREATE TABLE ball(
+    ball_location POINT
+);
