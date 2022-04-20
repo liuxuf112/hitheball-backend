@@ -284,6 +284,7 @@ const getMyTeamsFlags = (httpRequest,httpResponse)=>{
 
 //probably not a good way to do this.
 async function generateFlagSendBody(httpRequest,httpResponse,flagHomeLocations,flagStolenLocations){
+    //update flag at here
     
     for(var i = 0; i < flagStolenLocations.length; i++){
         
