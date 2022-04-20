@@ -287,52 +287,8 @@ async function generateFlagSendBody(httpRequest,httpResponse,flagHomeLocations,f
     //update flag at here 
     //remove un-use function
 
-
-    /*
-    var flagNumber = 1;
-    try{
-        var res = await queries.getPlayerInfoFromDeviceId(deviceId);
-        player = res.rows[0];
-    }catch(err){
-        errors.handleServerError("getPlayerInfoFromDeviceId",httpResponse,err);
-        return;
-    }
-
-
-    var teamId =player.team_id;
-    var attemptStealFlag;
-    try{
-        var res = await queries.getFlagWithFlagNumber(teamId,flagNumber);
-        attemptStealFlag = res.rows[0];
-    }catch(err){
-        errors.handleServerError("getFlagWithFlagNumber",httpResponse,err);
-        return;
-    }
-
-
-    var stealFlagLocation = attemptStealFlag.flag_location;
-    var tempX = stealFlagLocation.x;
-    var tempY = stealFlagLocation.y;
-    
-    var flagSendBody = [];
-    for(var i = 0; i < flagHomeLocations.length; i++){
-        var flagInfo = {};
-        
-
-        flagInfo.invisible = false;
-        flagInfo.latitude = tempX;
-        flagInfo.longitude = tempY;
-        
-        flagInfo.flagNumber = 1;
-        flagSendBody.push(flagInfo);
-    }
-   
-    return flagSendBody;
-
-    */
-
     for(var i = 0; i < flagStolenLocations.length; i++){
-
+        
         for(var j = 0; j < flagHomeLocations.length; j++){
             if(flagHomeLocations[j].flag_id == flagStolenLocations[i].flag_id){
                 flagHomeLocations[j].flag_location = flagStolenLocations[i].player_location;
@@ -342,7 +298,7 @@ async function generateFlagSendBody(httpRequest,httpResponse,flagHomeLocations,f
                 }
                 break; //if we find the flag in the home locations, no reason to do the other ones.
             }
-
+           
         }
     }
     var flagSendBody = [];
@@ -363,16 +319,10 @@ async function generateFlagSendBody(httpRequest,httpResponse,flagHomeLocations,f
             flagInfo.longitude = flagHomeLocations[i].flag_location.y;
         }
         flagInfo.flagNumber = flagHomeLocations[i].flag_number;
-        console.log("this is game.flagInfo!!!", game.flagInfo);
         flagSendBody.push(flagInfo);
     }
-
-
-
-
-
-
-
+   
+    return flagSendBody;
 
 
 }
