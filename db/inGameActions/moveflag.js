@@ -57,8 +57,8 @@ async function trytomoveflag(httpRequest,httpResponse,gameId,deviceId){
     console.log(tempX);
     console.log(tempY);
 
-    tempX_new = tempX + 5;
-    tempY_new = tempY + 5;
+    tempX_new = tempX + 0.1;
+    tempY_new = tempY + 0.1;
 
     console.log(tempX);
     console.log(tempY);

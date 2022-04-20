@@ -759,7 +759,11 @@ async function sendMapScreenInfo(httpRequest,httpResponse,gameId,deviceId){
     if(enemyFlagsBody == errors.ASYNC_FAILURE){
         return errors.ASYNC_FAILURE;
     }
+    
     sendBody.teamFlags = flagSendBody;
+    
+    console.log(flagSendBody);
+
     sendBody.teammates = teammatesBody;
     sendBody.enemys=enemyLocationsSendBody;
     sendBody.enemyFlags = enemyFlagsBody;
