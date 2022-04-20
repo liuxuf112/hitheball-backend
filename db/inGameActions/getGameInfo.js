@@ -761,7 +761,8 @@ async function sendMapScreenInfo(httpRequest,httpResponse,gameId,deviceId){
     }
     
     sendBody.teamFlags = flagSendBody;
-    
+
+    //test
     console.log(flagSendBody);
 
     sendBody.teammates = teammatesBody;
