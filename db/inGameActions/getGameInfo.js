@@ -684,6 +684,9 @@ async function sendMapScreenInfo(httpRequest,httpResponse,gameId,deviceId){
         return;
     }
     
+
+    console.log("print flag home location", flagHomeLocations);
+
     flagSendBody =await generateFlagSendBody(httpRequest,httpResponse,flagHomeLocations,flagStolenLocations);
   
     try{
